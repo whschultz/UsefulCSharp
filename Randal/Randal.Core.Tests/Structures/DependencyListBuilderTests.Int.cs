@@ -87,7 +87,7 @@ namespace Randal.Tests.Core.Structures
 
 			WhenLastActionDeferred(BuildingDependencies);
 
-			ThenLastAction.ShouldThrow<InvalidOperationException>("a circular reference was defined.")
+			ThenLastAction.Should().Throw<InvalidOperationException>("a circular reference was defined.")
 				.WithMessage("a circular reference was detected.  Circular path: \r\n1 -> 2 -> 5 -> 1");
 		}
 
@@ -98,7 +98,7 @@ namespace Randal.Tests.Core.Structures
 
 			WhenLastActionDeferred(BuildingDependencies);
 
-			ThenLastAction.ShouldThrow<KeyNotFoundException>();
+			ThenLastAction.Should().Throw<KeyNotFoundException>();
 		}
 
 		[TestMethod, NegativeTest]
@@ -108,7 +108,7 @@ namespace Randal.Tests.Core.Structures
 
 			WhenLastActionDeferred(Creating);
 
-			ThenLastAction.ShouldThrow<ArgumentNullException>();
+			ThenLastAction.Should().Throw<ArgumentNullException>();
 		}
 
 		protected override void Creating()

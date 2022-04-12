@@ -34,7 +34,7 @@ namespace GwtUnit.UnitTest
 			OnSetup();
 		}
 
-		public new dynamic Given;
+		public new dynamic Given = new DynamicEntity(MissingMemberBehavior.ReturnsNull);
 
 		/// <summary>
 		/// Determine if all provided members have been defined as Given values.
@@ -53,7 +53,7 @@ namespace GwtUnit.UnitTest
 		/// <param name="member"></param>
 		/// <param name="defaultValue"></param>
 		/// <returns></returns>
-		protected T GivenOrDefault<T>(string member, T defaultValue = default)
+		protected T? GivenOrDefault<T>(string member, T? defaultValue = default)
 		{
 			return Given.TestForMember(member) ? Given[member] : defaultValue;
 		}

@@ -22,7 +22,7 @@ namespace GwtUnit.Support
 
 		public bool HasConverters => false;
 
-		public bool TryConversion(Type type, Dictionary<string, object> data, out object result)
+		public bool TryConversion(Type type, Dictionary<string, object?> data, out object? result)
 		{
 			result = null;
 			return false;

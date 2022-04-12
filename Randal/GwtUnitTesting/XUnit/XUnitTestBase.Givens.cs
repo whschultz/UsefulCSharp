@@ -34,8 +34,6 @@ namespace GwtUnit.XUnit
 
 			disposeMe = Then as IDisposable;
 			disposeMe?.Dispose();
-
-			Then = null;
 		}
 
 		/// <summary>
@@ -101,8 +99,8 @@ namespace GwtUnit.XUnit
 
 		protected TThens Then;
 
-		protected Action ThenLastAction;
+		protected Action ThenLastAction = () => { };
 
-		protected Task ThenLastTask;
+		protected Task ThenLastTask = Task.CompletedTask;
 	}
 }

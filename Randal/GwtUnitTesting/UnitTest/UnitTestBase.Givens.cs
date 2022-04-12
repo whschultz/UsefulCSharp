@@ -43,8 +43,6 @@ namespace GwtUnit.UnitTest
 
 			disposeMe = Then as IDisposable;
 			disposeMe?.Dispose();
-
-			Then = null;
 		}
 
 		protected virtual void OnSetup() { }
@@ -110,10 +108,10 @@ namespace GwtUnit.UnitTest
 
 		protected Action NotCreating = () => { };
 
-		protected TGivens Given;
+		protected TGivens Given = new TGivens();
 
-		protected TThens Then;
+		protected TThens Then = new TThens();
 
-		protected Action ThenLastAction;
+		protected Action ThenLastAction = () => { };
 	}
 }

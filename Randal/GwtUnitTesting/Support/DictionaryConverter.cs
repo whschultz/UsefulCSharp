@@ -19,16 +19,16 @@ namespace GwtUnit.Support
 {
 	public sealed class DictionaryConverter : DynamicEntityConverter
 	{
-		private static readonly Func<Dictionary<string, object>, object> StandardDictionaryConverter =
+		private static readonly Func<Dictionary<string, object?>, object> StandardDictionaryConverter =
 			fromDictionary => fromDictionary.ToDictionary(entry => entry.Key, entry => entry.Value);
 
 		public DictionaryConverter()
 		{
-			AddTypeConverter(typeof (IDictionary<string, object>), StandardDictionaryConverter);
-			AddTypeConverter(typeof (Dictionary<string, object>), StandardDictionaryConverter);
-			AddTypeConverter(typeof (IReadOnlyDictionary<string, object>), StandardDictionaryConverter);
-			AddTypeConverter(typeof (ICollection<KeyValuePair<string, object>>), StandardDictionaryConverter);
-			AddTypeConverter(typeof (IEnumerable<KeyValuePair<string, object>>), StandardDictionaryConverter);
+			AddTypeConverter(typeof (IDictionary<string, object?>), StandardDictionaryConverter);
+			AddTypeConverter(typeof (Dictionary<string, object?>), StandardDictionaryConverter);
+			AddTypeConverter(typeof (IReadOnlyDictionary<string, object?>), StandardDictionaryConverter);
+			AddTypeConverter(typeof (ICollection<KeyValuePair<string, object?>>), StandardDictionaryConverter);
+			AddTypeConverter(typeof (IEnumerable<KeyValuePair<string, object?>>), StandardDictionaryConverter);
 		}
 	}
 }

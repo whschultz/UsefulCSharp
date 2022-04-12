@@ -44,7 +44,7 @@ namespace GwtUnit.XUnit
 		/// <param name="value"></param>
 		/// <typeparam name="T"></typeparam>
 		/// <returns>True - if the Given is defined, False - not defined.</returns>
-		protected bool TryGiven<T>(string member, out T value)
+		protected bool TryGiven<T>(string member, out T? value)
 		{
 			if (Given.TestForMember(member))
 			{
@@ -63,7 +63,7 @@ namespace GwtUnit.XUnit
 		/// <param name="member"></param>
 		/// <param name="defaultValue"></param>
 		/// <returns></returns>
-		protected T GivenOrDefault<T>(string member, T defaultValue = default)
+		protected T? GivenOrDefault<T>(string member, T? defaultValue = default)
 		{
 			return Given.TestForMember(member) ? (T)Given[member] : defaultValue;
 

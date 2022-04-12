@@ -18,7 +18,6 @@ using FluentAssertions;
 using GwtUnit.UnitTest;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Randal.Core.Dynamic;
-using GwtUnit.UnitTest;
 
 namespace Randal.Tests.Core.Dynamic
 {
@@ -130,8 +129,8 @@ namespace Randal.Tests.Core.Dynamic
 
 		private class Givens
 		{
-			public Type ConversionTo;
-			public Dictionary<string, object> DataDictionary;
+			public Type ConversionTo = typeof (void);
+			public Dictionary<string, object?>? DataDictionary;
 		}
 	}
 }

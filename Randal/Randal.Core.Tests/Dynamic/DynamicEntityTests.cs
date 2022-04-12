@@ -110,13 +110,13 @@ namespace Randal.Tests.Core.Dynamic
 			Then.Dictionary.Should().NotBeNull().And.HaveCount(1);
 		}
 
-		private Thens Then { get; set; }
+		private Thens Then { get; set; } = new Thens();
 
 		public class Thens
 		{
-			public object Entity;
-			public IDictionary<string, object> Dictionary;
-			public string String;
+			public object? Entity;
+			public IDictionary<string, object?>? Dictionary;
+			public string? String;
 			public int Int;
 			public int Count;
 			public bool MemberExists;

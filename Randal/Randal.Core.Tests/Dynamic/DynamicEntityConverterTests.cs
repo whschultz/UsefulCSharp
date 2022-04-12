@@ -28,7 +28,7 @@ namespace Randal.Tests.Core.Dynamic
 		public void ShouldHaveNoConvertesWhenCreating()
 		{
 			ThenConverter.Should().BeAssignableTo<IDynamicEntityConverter>();
-			ThenConverter.HasConverters.Should().BeFalse();
+			ThenConverter!.HasConverters.Should().BeFalse();
 			ThenConverter.ConverterCount.Should().Be(0);
 		}
 
@@ -40,7 +40,7 @@ namespace Randal.Tests.Core.Dynamic
 
 			WhenConverting();
 
-			ThenResult.Should().BeNull();
+			ThenResult!.Should().BeNull();
 			ThenSuccess.Should().BeFalse();
 		}
 
@@ -52,7 +52,7 @@ namespace Randal.Tests.Core.Dynamic
 
 			WhenAddingConverter();
 
-			ThenConverter.HasConverters.Should().BeTrue();
+			ThenConverter!.HasConverters.Should().BeTrue();
 			ThenConverter.ConverterCount.Should().Be(1);
 		}
 
@@ -63,7 +63,7 @@ namespace Randal.Tests.Core.Dynamic
 
 			WhenAddingConverter<string>();
 
-			ThenConverter.HasConverters.Should().BeTrue();
+			ThenConverter!.HasConverters.Should().BeTrue();
 			ThenConverter.ConverterCount.Should().Be(1);
 		}
 
@@ -75,7 +75,7 @@ namespace Randal.Tests.Core.Dynamic
 
 			WhenRemovingConverter();
 
-			ThenConverter.HasConverters.Should().BeFalse();
+			ThenConverter!.HasConverters.Should().BeFalse();
 			ThenConverter.ConverterCount.Should().Be(0);
 			ThenRemovedConverter.Should().NotBeNull();
 		}
@@ -87,7 +87,7 @@ namespace Randal.Tests.Core.Dynamic
 
 			WhenRemovingConverter<string>();
 
-			ThenConverter.HasConverters.Should().BeFalse();
+			ThenConverter!.HasConverters.Should().BeFalse();
 			ThenConverter.ConverterCount.Should().Be(0);
 			ThenRemovedConverter.Should().NotBeNull();
 		}
@@ -97,7 +97,7 @@ namespace Randal.Tests.Core.Dynamic
 		{
 			WhenRemovingConverter<string>();
 
-			ThenConverter.HasConverters.Should().BeFalse();
+			ThenConverter!.HasConverters.Should().BeFalse();
 			ThenConverter.ConverterCount.Should().Be(0);
 			ThenRemovedConverter.Should().BeNull();
 		}
@@ -126,40 +126,40 @@ namespace Randal.Tests.Core.Dynamic
 		private void WhenAddingConverter<TConversionType>()
 		{
 			if (GivenConverter != null)
-				ThenConverter.AddTypeConverter<TConversionType>(GivenConverter);
+				ThenConverter!.AddTypeConverter<TConversionType>(GivenConverter);
 		}
 
 		private void WhenAddingConverter()
 		{
 			if (GivenConverter != null)
-				ThenConverter.AddTypeConverter(GivenConversionTo, GivenConverter);
+				ThenConverter!.AddTypeConverter(GivenConversionTo, GivenConverter);
 		}
 
 		private void WhenRemovingConverter<TConversionType>()
 		{
 			WhenAddingConverter<TConversionType>();
-			ThenRemovedConverter = ThenConverter.RemoveTypeConverter<TConversionType>();
+			ThenRemovedConverter = ThenConverter!.RemoveTypeConverter<TConversionType>();
 		}
 
 		private void WhenRemovingConverter()
 		{
 			WhenAddingConverter();
-			ThenRemovedConverter = ThenConverter.RemoveTypeConverter(GivenConversionTo);
+			ThenRemovedConverter = ThenConverter!.RemoveTypeConverter(GivenConversionTo);
 		}
 
 		private void WhenConverting()
 		{
 			if (GivenConverter != null)
-				ThenConverter.AddTypeConverter(GivenConversionTo, GivenConverter);
-			ThenSuccess = ThenConverter.TryConversion(GivenConversionTo, GivenDataDictionary, out ThenResult);
+				ThenConverter!.AddTypeConverter(GivenConversionTo, GivenConverter);
+			ThenSuccess = ThenConverter!.TryConversion(GivenConversionTo, GivenDataDictionary!, out ThenResult);
 		}
 
-		private Type GivenConversionTo;
-		private Dictionary<string, object> GivenDataDictionary;
-		private Func<Dictionary<string, object>, object> GivenConverter;
-		private DynamicEntityConverter ThenConverter;
-		private Func<Dictionary<string, object>, object> ThenRemovedConverter;
-		private object ThenResult;
+		private Type GivenConversionTo = typeof (void);
+		private Dictionary<string, object>? GivenDataDictionary;
+		private Func<Dictionary<string, object?>, object>? GivenConverter;
+		private DynamicEntityConverter? ThenConverter;
+		private Func<Dictionary<string, object?>, object>? ThenRemovedConverter;
+		private object? ThenResult;
 		private bool ThenSuccess;
 	}
 }

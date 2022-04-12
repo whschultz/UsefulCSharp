@@ -70,7 +70,7 @@ namespace Randal.Tests.Core.Strings
 
 			WhenLastActionDeferred(Formatting);
 
-			ThenLastAction.ShouldThrow<FormatException>("Unescaped closing brace found at position 9.");
+			ThenLastAction.Should().Throw<FormatException>("Unescaped closing brace found at position 9.");
 		}
 
 		[TestMethod, NegativeTest]
@@ -80,7 +80,7 @@ namespace Randal.Tests.Core.Strings
 
 			WhenLastActionDeferred(Formatting);
 
-			ThenLastAction.ShouldThrow<FormatException>("Opening brace with no field name specified at position 5.");
+			ThenLastAction.Should().Throw<FormatException>("Opening brace with no field name specified at position 5.");
 		}
 
 		[TestMethod, NegativeTest]
@@ -90,7 +90,7 @@ namespace Randal.Tests.Core.Strings
 
 			WhenLastActionDeferred(Formatting);
 
-			ThenLastAction.ShouldThrow<FormatException>("Opening brace with field expression 'name,' has no closing brace at position 10.");
+			ThenLastAction.Should().Throw<FormatException>("Opening brace with field expression 'name,' has no closing brace at position 10.");
 		}
 
 		[TestMethod, NegativeTest]
@@ -100,7 +100,7 @@ namespace Randal.Tests.Core.Strings
 
 			WhenLastActionDeferred(Formatting);
 
-			ThenLastAction.ShouldThrow<FormatException>("Opening brace with no field name specified at position 1.");
+			ThenLastAction.Should().Throw<FormatException>("Opening brace with no field name specified at position 1.");
 		}
 
 		protected override void Creating()
