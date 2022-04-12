@@ -19,7 +19,7 @@ namespace Randal.Core.Dynamic
 {
 	public sealed class DynamicEntity : DynamicObject
 	{
-		private readonly Dictionary<string, object> _dataDictionary;
+		private readonly Dictionary<string, object?> _dataDictionary;
 		private readonly IDynamicEntityConverter _converter;
 		private readonly MissingMemberBehavior _missingMemberBehavior;
 
@@ -30,10 +30,10 @@ namespace Randal.Core.Dynamic
 		}
 
 		public DynamicEntity(MissingMemberBehavior missingMemberBehavior,
-			IDynamicEntityConverter converter = null, IEqualityComparer<string> comparer = null)
+			IDynamicEntityConverter? converter = null, IEqualityComparer<string>? comparer = null)
 		{
 			_missingMemberBehavior = missingMemberBehavior;
-			_dataDictionary = new Dictionary<string, object>(comparer ?? StringComparer.InvariantCultureIgnoreCase);
+			_dataDictionary = new Dictionary<string, object?>(comparer ?? StringComparer.InvariantCultureIgnoreCase);
 			_converter = converter ?? new NullConverter();
 		}
 
@@ -47,7 +47,7 @@ namespace Randal.Core.Dynamic
 			return _dataDictionary.Count;
 		}
 
-		public override bool TryGetMember(GetMemberBinder binder, out object result)
+		public override bool TryGetMember(GetMemberBinder binder, out object? result)
 		{
 			var valueFound = _dataDictionary.TryGetValue(binder.Name, out result);
 
@@ -63,13 +63,13 @@ namespace Randal.Core.Dynamic
 			}
 		}
 
-		public override bool TrySetMember(SetMemberBinder binder, object value)
+		public override bool TrySetMember(SetMemberBinder binder, object? value)
 		{
 			_dataDictionary[binder.Name] = value;
 			return true;
 		}
 
-		public override bool TryConvert(ConvertBinder binder, out object result)
+		public override bool TryConvert(ConvertBinder binder, out object? result)
 		{
 			if (_converter.HasConverters && _converter.TryConversion(binder.Type, _dataDictionary, out result))
 				return true;

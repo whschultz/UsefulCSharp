@@ -28,7 +28,7 @@ namespace Randal.Core.Dynamic
 			get { return false; }
 		}
 
-		public bool TryConversion(Type type, Dictionary<string, object> data, out object result)
+		public bool TryConversion(Type type, Dictionary<string, object?> data, out object? result)
 		{
 			result = null;
 			return false;

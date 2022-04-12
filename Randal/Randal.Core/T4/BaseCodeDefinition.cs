@@ -16,7 +16,7 @@ namespace Randal.Core.T4
 	public abstract class BaseCodeDefinition : IDatabaseCode
 	{
 		public short Code { get; set; }
-		public string Name { get; set; }
-		public string Description { get; set; }
+		public abstract string Name { get; set; }
+		public abstract string Description { get; set; }
 	}
 }

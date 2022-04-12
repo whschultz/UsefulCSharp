@@ -19,7 +19,7 @@ namespace Randal.Core.Dynamic
 {
 	public sealed class DictionaryConverter : DynamicEntityConverter
 	{
-		private static readonly Func<Dictionary<string, object>, object> StandardDictionaryConverter =
+		private static readonly Func<Dictionary<string, object?>, object> StandardDictionaryConverter =
 			fromDictionary => fromDictionary.ToDictionary(entry => entry.Key, entry => entry.Value);
 
 		public DictionaryConverter()

@@ -18,7 +18,7 @@ namespace Randal.Core.T4
 {
 	public static class CodeGeneratorExtensions
 	{
-		public static string ToFullyFormattedCode(this IReadOnlyList<DbCodeDefinition> codes, string @namespace, string @enum, string type = null)
+		public static string ToFullyFormattedCode(this IReadOnlyList<DbCodeDefinition> codes, string @namespace, string @enum, string? type = null)
 		{
 			if(string.IsNullOrWhiteSpace(@namespace))
 				throw new ArgumentException("A valid namespace name is required.", nameof(@namespace));
@@ -26,7 +26,7 @@ namespace Randal.Core.T4
 			if (string.IsNullOrWhiteSpace(@enum))
 				throw new ArgumentException("A valid enum name is required.", nameof(@enum));
 
-			var formattedType = string.IsNullOrWhiteSpace(type) ? string.Empty : $" : {type.Trim()}";
+			var formattedType = string.IsNullOrWhiteSpace(type) ? string.Empty : $" : {type!.Trim()}";
 
 			var definition = string.Join("\r\n\t\t", codes.ToCodeLines());
 

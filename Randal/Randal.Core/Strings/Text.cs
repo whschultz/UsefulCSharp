@@ -73,22 +73,22 @@ namespace Randal.Core.Strings
 			return _s;
 		}
 
-		public bool Equals(string other)
+		public bool Equals(string? other)
 		{
 			return _s.Equals(other);
 		}
 
-		public override bool Equals(object obj)
+		public override bool Equals(object? obj)
 		{
 			return _s.Equals(obj);
 		}
 
-		public int CompareTo(string other)
+		public int CompareTo(string? other)
 		{
 			return string.Compare(_s, other, StringComparison.Ordinal);
 		}
 
-		public int CompareTo(object obj)
+		public int CompareTo(object? obj)
 		{
 			return _s.CompareTo(obj);
 		}

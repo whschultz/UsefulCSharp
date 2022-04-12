@@ -18,6 +18,7 @@ using System.Linq;
 namespace Randal.Core.Structures
 {
 	public sealed class DependencyListBuilder<TKey, TValue> : IDependency<TKey, TValue>
+		where TKey : notnull
 	{
 		public DependencyListBuilder(IEnumerable<TValue> values)
 		{
@@ -28,7 +29,7 @@ namespace Randal.Core.Structures
 		}
 
 		public List<TValue> BuildDependencyList(Func<TValue, TKey> getKeyItemFunc,
-			Func<TValue, IEnumerable<TKey>> getDependenciesFunc, IEqualityComparer<TKey> comparer = null)
+			Func<TValue, IEnumerable<TKey>> getDependenciesFunc, IEqualityComparer<TKey>? comparer = null)
 		{
 			var dependencyLookup = comparer == null 
 				? _values.ToDictionary(getKeyItemFunc) 
@@ -52,7 +53,7 @@ namespace Randal.Core.Structures
 			IReadOnlyDictionary<TKey, TValue> dependencyLookup, 
 			Func<TValue, TKey> getKeyItemFunc, 
 			Func<TValue, IEnumerable<TKey>> getDependenciesFunc, 
-			IList<TKey> itemsAlreadyAdded = null)
+			IList<TKey>? itemsAlreadyAdded = null)
 		{
 			itemsAlreadyAdded = itemsAlreadyAdded == null ? new List<TKey>() : new List<TKey>(itemsAlreadyAdded);
 
@@ -68,7 +69,7 @@ namespace Randal.Core.Structures
 
 			foreach (var dependencyKey in getDependenciesFunc(currentItem))
 			{
-				TValue dependency;
+				TValue? dependency;
 
 				if (dependencyLookup.TryGetValue(dependencyKey, out dependency) == false)
 					throw new KeyNotFoundException("Item with key '" + currentKey + "' has dependency '" + dependencyKey +

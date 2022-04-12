@@ -19,7 +19,7 @@ namespace Randal.Core.T4
 	{
 		private readonly object _code, _name, _displayName, _description, _obsolete;
 
-		public DbCodeDefinition(object code, object name, object displayName, object description, object obsolete = null)
+		public DbCodeDefinition(object code, object name, object displayName, object description, object? obsolete = null)
 		{
 			_code = code;
 			_name = name;

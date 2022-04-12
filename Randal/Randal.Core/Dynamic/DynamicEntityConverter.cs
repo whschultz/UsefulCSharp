@@ -20,16 +20,16 @@ namespace Randal.Core.Dynamic
 	{
 		int ConverterCount { get; }
 		bool HasConverters { get; }
-		bool TryConversion(Type type, Dictionary<string, object> data, out object result);
+		bool TryConversion(Type type, Dictionary<string, object?> data, out object? result);
 	}
 
 	public class DynamicEntityConverter : IDynamicEntityConverter
 	{
-		private readonly Dictionary<Type, Func<Dictionary<string, object>, object>> _converters;
+		private readonly Dictionary<Type, Func<Dictionary<string, object?>, object>> _converters;
 
 		public DynamicEntityConverter()
 		{
-			_converters = new Dictionary<Type, Func<Dictionary<string, object>, object>>();
+			_converters = new Dictionary<Type, Func<Dictionary<string, object?>, object>>();
 		}
 
 		public int ConverterCount
@@ -42,14 +42,14 @@ namespace Randal.Core.Dynamic
 			get { return _converters.Count > 0; }
 		}
 
-		protected Dictionary<Type, Func<Dictionary<string, object>, object>> Converters
+		protected Dictionary<Type, Func<Dictionary<string, object?>, object>> Converters
 		{
 			get { return _converters; }
 		}
 
-		public bool TryConversion(Type type, Dictionary<string, object> data, out object result)
+		public bool TryConversion(Type type, Dictionary<string, object?> data, out object? result)
 		{
-			Func<Dictionary<string, object>, object> converter;
+			Func<Dictionary<string, object?>, object>? converter;
 
 			if (Converters.TryGetValue(type, out converter))
 			{
@@ -61,24 +61,24 @@ namespace Randal.Core.Dynamic
 			return false;
 		}
 
-		public void AddTypeConverter<TConvertTo>(Func<Dictionary<string, object>, object> converter)
+		public void AddTypeConverter<TConvertTo>(Func<Dictionary<string, object?>, object> converter)
 		{
 			Converters.Add(typeof (TConvertTo), converter);
 		}
 
-		public void AddTypeConverter(Type type, Func<Dictionary<string, object>, object> converter)
+		public void AddTypeConverter(Type type, Func<Dictionary<string, object?>, object> converter)
 		{
 			Converters.Add(type, converter);
 		}
 
-		public Func<Dictionary<string, object>, object> RemoveTypeConverter<TConvertTo>()
+		public Func<Dictionary<string, object?>, object>? RemoveTypeConverter<TConvertTo>()
 		{
 			return RemoveTypeConverter(typeof (TConvertTo));
 		}
 
-		public Func<Dictionary<string, object>, object> RemoveTypeConverter(Type type)
+		public Func<Dictionary<string, object?>, object>? RemoveTypeConverter(Type type)
 		{
-			Func<Dictionary<string, object>, object> converter;
+			Func<Dictionary<string, object?>, object>? converter;
 			if (Converters.TryGetValue(type, out converter))
 			{
 				Converters.Remove(type);

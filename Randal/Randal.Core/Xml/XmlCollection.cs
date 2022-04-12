@@ -22,7 +22,7 @@ namespace Randal.Core.Xml
 		{
 		}
 
-		public XmlCollection(IEnumerable<TItem> items)
+		public XmlCollection(IEnumerable<TItem>? items)
 		{
 			Items = items == null ? new List<TItem>() : new List<TItem>(items);
 		}

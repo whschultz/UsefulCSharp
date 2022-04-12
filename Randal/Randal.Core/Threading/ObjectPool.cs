@@ -29,7 +29,7 @@ namespace Randal.Core.Threading
 
 		public T GetObject()
 		{
-			T item;
+			T? item;
 			return _objects.TryTake(out item)
 				? item
 				: _objectGenerator();
